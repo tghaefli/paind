@@ -1,0 +1,30 @@
+\subsection{uORB}
+
+Die uORB (\acrlong{uorb}) wird auf dem Pixhawk verwendet um Datenstrukturen, sogenannte Topics, zwischen Apps, also Threads, auszutauschen. Dies ermöglicht eine ressourcenarme Möglichkeit, auf interne Daten zu warten per Betriebssystem Interrupt.
+Man kann einen Filedescriptor auf ein gewünschte Topic anlegen, wie in folgendem Codebeispiel ersichtlich ist. 
+
+\begin{lstlisting}
+  //File descriptor erzeugen und zuweisen
+	struct sensor_combined_s raw;
+	int sensor_sub_fd = orb_subscribe(ORB_ID(sensor_combined));
+	struct pollfd fds_uorb[]= {
+		{ .fd = sensor_sub_fd,   .events = POLLIN },
+	};
+	
+    [...]
+  
+	//Warte auf neue Daten per OS Interrupt
+	poll_ret = poll(fds_uorb, 1, TIMEOUT_MS);
+	
+	if (poll_ret <= 0)
+	  //Keine Daten erhalten
+	else
+	  //Neue Daten erhalten
+
+\end{lstlisting}
+
+%\caption{Thema abonnieren und auf Daten warten}
+
+\noindent
+Hier wird ein Filedescriptor erzeugt, welcher alle Sensordaten abonniert. Falls während dem Timeout 'TIMEOUT\_MS' neue Daten auf die uORB geschrieben wurden, wird ein Interrupt ausgelöst und der return Wert wird grösser 0 sein.
+

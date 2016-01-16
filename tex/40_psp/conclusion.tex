@@ -1,0 +1,13 @@
+\subsection{Auswertung}
+Das PSP dient dazu eigene Flugregler mit einfachen Mitteln und ohne Programmierkenntnissen zu entwerfen, realisieren und auf dem Fluggerät in realer Umgebung zu testen.
+
+\noindent Weiter können Parameter (z.B. P-, I- Anteil, Matritzen) während der Laufzeit geändert werden. Dies sollte jedoch aufgrund der Performance nicht während dem Flug vorgenommen werden.\\
+
+\noindent Im Simulink Modell können auch die Signale der PSP Blöcke zur Laufzeit angezeigt werden. Dadurch hat man einen Überblick der Gyro- Accel-, Batterie-Werte. Dies ist jedoch nur während der kabelgebundenen Ausführung möglich.
+\\
+
+\noindent Das Tool hat jedoch nicht nur Vorteile. Durch die Struktur der Blöcke ist \textbf{keine} HiL Simulation, wie in Abbildung \ref{fig:hil_pixhawk} aufgezeigt, möglich. Für die Umgebungssimulation auf Seiten Simulink (Host PC) stehen nur die Sensorenwerte zur Verfügung und nicht jene der Aktuatoren. Dadurch findet der Kreislauf in reversierter Abfolge statt.\\
+
+\noindent Als weiterer Negativpunkt sind umständlichen Projekteinstellungen in Simulink aufzuführen. Diese weichen in jedem Beispielprojekt voneinander ab und falls ein Häcken bei einer Option falsch gesetzt wurde, funktioniert der Code Composer nicht. Die Fehlerausgabe dieses Tool ist dann bei der Fehlersuche nicht hilfreich.
+ 
+\clearpage

@@ -1,0 +1,53 @@
+\subsection{Installation}
+\begin{flushleft}
+
+Die Installation der Pixhawk Toolchain wird auf \href{https://pixhawk.org/dev/quickstart}{www.pixhawk.org/dev/quickstart} für alle Betriebssysteme sehr detailliert und ausführlich erklärt.
+
+\end{flushleft}
+
+
+
+\subsection{Verwendung}
+\noindent
+Mit dem Kommando \textbf{make px4fmu-v2\_default} wird die Firmware kompiliert und die .elf Datei erzeugt. Mit \textbf{make px4fmu-v2\_default upload} wird die Firmware kompiliert, .elf Datei erzeugt, auf das Pixhawk per USB hochgeladen und dort programmiert.
+
+\subsubsection{Linux}
+
+Für Linux Benützer ist es zu empfehlen, ein alias für die Kommandos zu erstellen. Dies kann erzeugt werden durch:
+\begin{lstlisting}
+cd ~
+vim .bashrc
+\end{lstlisting}
+
+\noindent
+Anschliessend die Taste 'a' drücken für den Eingabe Modus. Jetzt folgende Zeilen eingeben:
+
+\begin{lstlisting}
+mk () {
+  cd ~/path/to/Firmware/
+  make px4fmu-v2_default
+}
+
+mkup () {
+  cd ~/path/to/Firmware/
+  make px4fmu-v2_default upload
+}
+\end{lstlisting}
+
+\noindent
+Der Pfad zur Firmware muss vorher angepasst werden. Durch ESC kann anschliessend in den Navigationsmodus gewechselt werden. Mit ':wq' werden die Änderungen gespeichert und das Programm verlassen. Der Pfad zur Firmware muss vorher angepasst werden. Zum Schluss muss die  \textbf{.bashrc} Datei neu kompiliert werden mit:
+
+\begin{lstlisting}
+source .bashrc
+\end{lstlisting}
+
+\noindent
+Nun kann über das Terminal die Firmware kompiliert und hochgeladen werden mit dem Befehl 'mkup'. Falls man diesen nicht immer neu eingeben möchte, kann mit der Pfeiltaste $\uparrow$  oder !! das letzte Kommando erneut ausgeführt werden.\\
+
+\noindent
+Für die Programmierung empfiehlt sich die IDE Code::Blocks. Auch hierzu gibt es eine Anleitung unter \href{https://pixhawk.ethz.ch/toolchain/codeblocks}{https://pixhawk.ethz.ch/toolchain/codeblocks}. In der Anleitung sollten jedoch nur die stable builds verwendet werden und keine nightly builds.
+
+
+\subsection{Troubelshooting}
+Während der Arbeit mit dem Pixhawk traten keine Fehler auf. Das px4 v1 (Pixhawk Version1) hatte im Vergleich einige zeitkritische Probleme beim Löschen und Programmieren der Firmware. 
+\clearpage

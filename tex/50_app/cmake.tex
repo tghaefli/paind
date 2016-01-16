@@ -1,0 +1,23 @@
+\subsection{cmake}
+Die Applikationsentwicklung auf dem Pixhawk ist modular aufgebaut. Durch Verwendung von cmake können Kompilerparameter einfach geändert oder Codesegmente hinzugefügt werden. Pixhawk führte cmake gegen Ende 2015 neu ein. Vorher basierte der Build Prozess auf make.
+
+\noindent Durch folgende \textit{CMakeLists.txt} Datei werden zwei neue Sourcedateien namens \textit{my\_app.c} und \textit{crc.c} zum Build Prozess hinzugefügt. Die Priorität wurde sehr hoch angesetzt. Der Stack liegt mit 1200 Bytes auf der sicheren Seite. Stackoverflows sollten dadurch nicht vorkommen, solange keine rekursiven Methoden verwendet werden.\\
+\noindent Falls die App programmiert wurde, kann ihre main Methode mit dem Kommando my\_app in der nsh gestartet werden. Dies ist auf Zeile 3 definiert.
+
+\begin{lstlisting}
+px4_add_module(
+	MODULE modules__my_app
+	MAIN my_app
+	PRIORITY "SCHED_PRIORITY_MAX-30"
+	STACK 1200
+	COMPILE_FLAGS
+		#${MODULE_CFLAGS}
+		#-Os
+	SRCS
+		my_app.c
+		crc.c
+	DEPENDS
+		#platforms__common	)
+\end{lstlisting}
+
+\clearpage
