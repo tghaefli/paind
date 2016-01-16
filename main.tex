@@ -1,0 +1,127 @@
+\documentclass[a4paper,10pt,fleqn]{article}
+\usepackage{tex/00/layout}
+
+\usepackage{wrapfig}      %Wrap figures
+\usepackage{url}
+\usepackage{todonotes}    %Todo notes
+
+
+\usepackage{float}
+
+
+\usepackage{multicol}    % For 2 cloumn glossary
+\usepackage[nonumberlist]{glossaries}
+\makeglossaries
+\include{tex/03/glossary}
+
+\tolerance=500            % hbox badness warning supression
+
+
+\begin{document}
+\input{tex/01/title}
+\input{tex/01/selbstaendigkeitserklaerung}
+\input{tex/01/abstract}
+
+
+% Inhaltsverzeichniss
+\input{tex/02/table}
+
+
+% Glossary
+%\glsaddall
+%\printglossary
+
+\begin{multicols}{2}
+	\glossarystyle{altlistgroup}
+	\glsaddall
+	\printglossary[title=Glossar]
+\end{multicols}
+\clearpage
+
+
+%Einführung pixhawk & HIL
+\section{Einführung}
+\label{sec:Einführung}
+\input{tex/10_intro/aufgabenstellung}
+
+
+\section{Was ist Pixhawk}
+\label{sec:Was ist Pixhawk}
+
+\input{tex/20_pixhawk/px4_introduction}
+%\input{tex/20_pixhawk/linux}
+\input{tex/20_pixhawk/posix}
+\input{tex/20_pixhawk/nuttx}
+\input{tex/20_pixhawk/uorb}
+\input{tex/50_app/cmake}
+
+
+%Programmierumgebung
+\section{Toolchains}
+\label{sec:Toolchains}
+\input{tex/30_toolchain/toolchain}
+
+
+%Hardware-in-Loop
+\section{Hardware in the Loop}
+\label{sec:Hardware in the Loop}
+\input{tex/35_hil/introduction}
+\input{tex/35_hil/pixhawk_and_hil}
+
+
+
+%Matlab+Simulink PSP
+\section{Pilot Support Package}
+\label{sec:Pilot Support Package}
+\input{tex/40_psp/einfuehrung}
+%\input{tex/40_psp/install}
+\input{tex/40_psp/run}
+\input{tex/40_psp/conclusion}
+
+
+%Programmierung
+\section{Eigene HiL Simulation Entwicklung}
+Aufgrund des Misserfolgs vom PSP, wurde ein neuer Weg eingeschlagen. Es gibt bereits fertige, komplexe Pixhawk HiL Simulatoren, jedoch basieren diese auf mehreren, teils kostenpflichtigen, Programmen und der Support für diese Applikationen ist nicht gewährleistet.\\
+Deshalb wurde eine eigene App für das Pixhawk entwickelt, welche die Daten auf dem Mikroprozessor modifizieren, auslesen oder einfügen kann. Dadurch ist dieses Lösungskonzept sehr mächtig, offen und erweiterbar. Auf der Gegenseite wurde eine Umgebungssimulation in Simulink programmiert, welche ohne Verzögerung ihre Aufgabe erfüllen soll.
+
+
+\subsection{App Entwicklung}
+\label{sec:App entwicklung}
+\input{tex/50_app/statemachine}
+\input{tex/50_app/serial}
+\input{tex/50_app/conclusion}
+
+\subsection{Simulink}
+\label{sec:Simulink}
+\input{tex/60_simulink/serial}
+\input{tex/60_simulink/parser}
+
+\input{tex/70_eigene_app/hil_1}
+
+\input{tex/75_conclusion/conclusion}
+
+
+%Bibliography
+
+%\section{Quellenverzeichnis}
+%\nocite{*}
+%\bibliography{tex/80_bib/bibliographie}
+%\clearpage
+
+
+%Anhang
+\section{Anhang}
+\label{sec:Anhang}
+\appendix
+
+\nocite{*}
+  \bibliography{tex/80_bib/bibliographie}
+  \clearpage
+\input{tex/90_appendix/abbildungen}
+\input{tex/90_appendix/cd_rom}
+\input{tex/90_appendix/code}
+\input{tex/90_appendix/aufgabenstellung}
+\input{tex/90_appendix/schedule}
+
+
+\end{document}
